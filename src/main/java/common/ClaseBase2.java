@@ -19,6 +19,7 @@ public class ClaseBase2 {
     @BeforeEach
     public void login() {
         driver = Configuration.createChromeDriver();
+        driver.manage().window().maximize();
         wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         driver.get(Configuration.ADMIN_URL);
 

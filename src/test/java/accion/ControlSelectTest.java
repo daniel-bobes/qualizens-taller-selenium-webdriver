@@ -14,21 +14,17 @@ public class ControlSelectTest extends ClaseBase2 {
 
     @Test
     public void testSelectUsingClick() {
-        this.getDriver().manage().window().maximize();
         this.getDriver().findElement(By.linkText("Settings")).click();
         this.getWait().until(
                 ExpectedConditions.visibilityOfElementLocated(By.id("blogname")));
 
-        //Thread.sleep(3000);
         WebElement dropdown = this.getDriver().findElement(By.id("start_of_week"));
         dropdown.click();
-        //Thread.sleep(3000);
 
         String expectedDay = "Wednesday";
         String xpathSelector = "//option[text()='" + expectedDay + "']";
         WebElement option = this.getDriver().findElement(By.xpath(xpathSelector));
         option.click();
-        //Thread.sleep(3000);
 
         assertTrue(option.isSelected(),
                 "Verifico que el elemento esta seleccionado");
@@ -38,16 +34,13 @@ public class ControlSelectTest extends ClaseBase2 {
 
     @Test
     public void testSelectUsingSendKeys() {
-        this.getDriver().manage().window().maximize();
         this.getDriver().findElement(By.linkText("Settings")).click();
         this.getWait().until(
                 ExpectedConditions.visibilityOfElementLocated(By.id("blogname")));
 
-        //Thread.sleep(3000);
         WebElement dropDown = this.getDriver().findElement(By.id("start_of_week"));
         String expectedDay = "Wednesday";
         dropDown.sendKeys(expectedDay);
-        //Thread.sleep(3000);
 
         String xpathSelector = "//option[text()='" + expectedDay + "']";
         WebElement option = this.getDriver().findElement(By.xpath(xpathSelector));
@@ -59,16 +52,13 @@ public class ControlSelectTest extends ClaseBase2 {
 
     @Test
     public void testSelectUsingSelectByVisibleText() {
-        this.getDriver().manage().window().maximize();
         this.getDriver().findElement(By.linkText("Settings")).click();
         this.getWait().until(
                 ExpectedConditions.visibilityOfElementLocated(By.id("blogname")));
 
-        //Thread.sleep(3000);
         Select dropDown = new Select(this.getDriver().findElement(By.id("start_of_week")));
         String expectedDay = "Wednesday";
         dropDown.selectByVisibleText(expectedDay);
-        //Thread.sleep(3000);
 
         String selectedDay = dropDown.getFirstSelectedOption().getText();
         assertEquals(expectedDay, selectedDay, "Verifico el día seleccionado");
