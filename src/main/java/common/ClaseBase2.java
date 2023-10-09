@@ -23,6 +23,10 @@ public class ClaseBase2 {
         wait = new WebDriverWait(driver, Duration.ofSeconds(60));
         driver.get(Configuration.ADMIN_URL);
 
+        System.out.println(this.getDriver().getTitle()
+                + " (" + this.getDriver().getCurrentUrl() + ")");
+        System.out.println("Window handle: " + this.getDriver().getWindowHandle());
+
         WebElement username = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.name("log"))
         );
