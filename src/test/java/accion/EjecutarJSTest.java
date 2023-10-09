@@ -49,4 +49,35 @@ public class EjecutarJSTest extends ClaseBase2 {
 
         getDriver().navigate().back();
     }
+
+    @Test
+    public void test4() {
+        JavascriptExecutor jsExec = (JavascriptExecutor) this.getDriver();
+
+        jsExec.executeScript(
+                "document.querySelector('#wp-admin-bar-site-name > a').click();"
+        );
+
+        getWait().until(
+                ExpectedConditions.presenceOfElementLocated(By.linkText("User's blog")));
+
+        getDriver().navigate().back();
+
+        WebElement viewSiteLink = this.getDriver().findElement(
+                By.cssSelector("#wp-admin-bar-site-name > a"));
+
+        jsExec.executeScript("arguments[0].click();", viewSiteLink);
+
+        getDriver().navigate().back();
+
+        WebElement siteLink = (WebElement) jsExec.executeScript(
+                "return document.querySelector('#wp-admin-bar-site-name > a')");
+
+        siteLink.click();
+
+        getWait().until(
+                ExpectedConditions.presenceOfElementLocated(By.linkText("User's blog")));
+
+        getDriver().navigate().back();
+    }
 }
