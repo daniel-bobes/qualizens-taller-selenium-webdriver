@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EjecutarJSTest extends ClaseBase2 {
 
@@ -48,5 +49,21 @@ public class EjecutarJSTest extends ClaseBase2 {
                 ExpectedConditions.presenceOfElementLocated(By.linkText("User's blog")));
 
         getDriver().navigate().back();
+    }
+
+    @Test
+    public void test4() {
+        JavascriptExecutor jsExec = (JavascriptExecutor) this.getDriver();
+
+        WebElement userProfile = getDriver().findElement(By.cssSelector("#wp-admin-bar-user-info > a"));
+
+        // userProfile.click();
+        // provoca org.openqa.selenium.ElementNotInteractableException: element not interactable
+
+        jsExec.executeScript("arguments[0].click();", userProfile);
+
+        String expectedTitle = "Profile";
+        WebElement profileTille = getDriver().findElement(By.className("wp-heading-inline"));
+        assertEquals(expectedTitle, profileTille.getText());
     }
 }

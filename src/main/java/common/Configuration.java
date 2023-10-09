@@ -9,6 +9,7 @@ import java.io.File;
 public class Configuration {
     public static String IP = "http://20.169.202.27";
     public static String ADMIN_URL = IP + "/wp-admin";
+    public static String BLOG_URL = IP + "/wordpress";
     public static String USER = "user";
     public static String PASS = "Password123";
 
