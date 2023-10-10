@@ -2,6 +2,7 @@ package accion;
 
 import common.ClaseBase2;
 import common.Configuration;
+import org.apache.commons.io.FileUtils;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
@@ -11,6 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 import java.io.File;
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -30,15 +32,13 @@ public class TakeScreenshotsWithSeleniumTest extends ClaseBase2 {
     }
 
     @Test
-    public void takeElementScreenshot() throws NoSuchMethodException {
+    public void takeElementScreenshot() throws NoSuchMethodException, IOException {
         WebElement welcomePanel = this.getDriver().findElement(By.id("wp-version-message"));
         File source = welcomePanel.getScreenshotAs(OutputType.FILE);
         String path = String.format("%s%s-%s.png",
                 Configuration.SCREENSHOT_DIR, "captura", System.currentTimeMillis());
         File dest = new File(path);
-        //FileUtils.copyFile(source, dest);
-        boolean fileRenamed = source.renameTo(dest);
-        assertTrue(fileRenamed);
+        FileUtils.copyFile(source, dest);
     }
 
     @Test
